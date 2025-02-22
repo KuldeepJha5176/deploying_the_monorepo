@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.backend
+    ports:
+      - 8080:8080x  
+    depends_on:
+      - db
+  db:
+    image: postgres:15.3
+    restart: always
+    environment:
+      POSTGRES_USER: cohort
+      POSTGRES_PASSWORD: cohort
+      POSTGRES_DB: cohort
+    ports:
+      - 5432:5432
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+  ws:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.ws
+    ports:
+      - 8000:8000
+    depends_on: 
+      - db      
