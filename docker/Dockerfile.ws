@@ -2,15 +2,10 @@ FROM oven/bun:1.2.2
 
 WORKDIR /usr/src/app
 
-COPY ./packages ./packages
-COPY ./bun.lockb ./bun.lockb
-COPY .package.json ./package.json
-COPY .package-lock.json ./package-lock.json
-COPY .turbo.json ./turbo.json
 
 
 
-COPY apps/ws-server ./apps/ws-server
+COPY . .
 
 RUN bun install
 RUN bun run db:generate
