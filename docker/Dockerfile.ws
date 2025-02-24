@@ -1,6 +1,6 @@
 FROM oven/bun:1.2.2
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY ./packages ./packages
 COPY ./bun.lockb ./bun.lockb
