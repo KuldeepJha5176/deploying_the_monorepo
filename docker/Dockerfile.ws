@@ -1,16 +1,14 @@
-FROM oven/bun:1.2.2
+FROM oven/bun:1
 
 WORKDIR /usr/src/app
 
-
-
-
+## Can you optimise this?
 COPY . .
 
 RUN bun install
-RUN bun run db:generate
 
+RUN bun run generate:db
 
-EXPOSE 8000
+EXPOSE 8080
 
-CMD ["bun", "run", "start:ws"]
+CMD ["bun", "start:ws"]
